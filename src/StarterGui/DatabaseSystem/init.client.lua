@@ -6,8 +6,18 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
 local app = require(script.App)
+local closeEvent
+do
+    closeEvent = Instance.new("BindableEvent")
+    closeEvent.Parent = LocalPlayer.PlayerGui
+    closeEvent.Name = "CloseUI"
+end
 
-existingUITree = Roact.mount(e(app), 
+local existingUITree = Roact.mount(e(app), 
 	LocalPlayer.PlayerGui, 
     "DatabaseSystemUI"
 )
+
+closeEvent.Event:Connect(function()
+    Roact.unmount(existingUITree)
+end)

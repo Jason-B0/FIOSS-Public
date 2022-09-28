@@ -12,13 +12,14 @@ local LoginPageComponent = Roact.Component:extend("LoginPageComponent")
 
 function LoginPageComponent:init(props)
 	self.props.onClick = props.onClick
+	self.props.success = props.success
 	
 	self.styles, self.api = RoactSpring.Controller.new({
 		size = UDim2.fromScale(0, 0),
 	})
 end
 
-function LoginPageComponent:render(props)
+function LoginPageComponent:render()
 	return e("Frame", {
 		AnchorPoint = Vector2.new(0.5, 0.5),
 		BackgroundColor3 = Color3.fromRGB(142, 101, 21),
@@ -28,7 +29,7 @@ function LoginPageComponent:render(props)
 		BorderSizePixel = 0,
 		ClipsDescendants = true,
 		Position = UDim2.fromScale(0.5, 0.55),
-		Size = self.styles.size,
+		Size = if self.props.success == false then self.styles.size else UDim2.fromScale(0.3,0.7),
 	}, {
 		inputUsername = e("TextBox", {
 			[Roact.Ref] = inUsernameRef,
@@ -193,13 +194,14 @@ function LoginPageComponent:render(props)
 		}),
 
 		badge = e("ImageLabel", {
-			Image = "rbxassetid://9992837650",
+			Image = "rbxassetid://502403405",
 			AnchorPoint = Vector2.new(0.5, 0.5),
 			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 			BackgroundTransparency = 1,
 			BorderSizePixel = 0,
 			Position = UDim2.fromScale(0.5, 0.143),
-			Size = UDim2.fromScale(0.3, 0.2),
+			Size = UDim2.fromScale(0.25, 0.2),
+			ScaleType = Enum.ScaleType.Fit,
 			ZIndex = 3,
 		}, {
 			uIAspectRatioConstraint6 = e("UIAspectRatioConstraint", {
@@ -299,20 +301,32 @@ function LoginPageComponent:didMount(props)
 			})
 		end)
 	end)
+	
+	if self.props.success == true then
+			self.api:start({
+					size = UDim2.fromScale(0.3, 0.7),
+					config = { mass = 1, tension = 210, friction = 20, clamp = true, duration = .25 }
+			}):andThen(function()
+				self.api:start({ 
+				size = UDim2.fromScale(0.3, 0.1),
+				config = { mass = 1, tension = 210, friction = 20, clamp = true, duration = .1 }
+			})
+		end)
+	end
 end
 
-LoginPage = RoactRodux.connect(
+local LoginPage = RoactRodux.connect(
 	function(state)
         if state.auth ~= nil then
             local success = state.auth.success
             if success ~= true then
                 return {
-					auth = false,
+					success = false,
                     message = "[ERROR] Incorrect Username/Password"
                 }
 			else
 				return {
-					auth = true,
+					success = true,
 					message = " ",
 				}
             end

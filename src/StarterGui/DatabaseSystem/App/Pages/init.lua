@@ -8,12 +8,15 @@ local PageComponent = Roact.Component:extend("PageComponent")
 
 function PageComponent:render(props)
 	props = self.props
-	return
-        if props.page == "Home" then 
-            e(require(script.HomePage))
-            
-        else
-            e(require(script.LoginPage))
+	
+	if props.page == "Home" then 
+        return e(require(script.HomePage))
+			
+	else
+		return e(require(script.LoginPage), {
+			success = false,
+		})
+	end
     
 end
 

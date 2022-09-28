@@ -15,7 +15,7 @@ return e("Frame", {
 		Position = UDim2.fromScale(0.5, 0.04),
 		Size = UDim2.fromScale(1, 0.1),
 	}, {
-		badge = e("ImageLabel", {
+		badge = e("ImageButton", {
 			Image = "rbxassetid://9992837650",
 			AnchorPoint = Vector2.new(0.5, 0.5),
 			BackgroundColor3 = Color3.fromRGB(255, 255, 255),

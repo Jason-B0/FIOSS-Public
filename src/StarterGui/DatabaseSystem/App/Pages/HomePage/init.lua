@@ -16,7 +16,8 @@ local function HomePageComponent(props)
 		Size = UDim2.fromScale(1, 0.91),
 	}, {
         avatar = e(require(script.Avatar)),
-        content = require(script.Content)
+        content = require(script.Content),
+		sideMenu = e(require(script.SideMenu)),
     })
 end
 
