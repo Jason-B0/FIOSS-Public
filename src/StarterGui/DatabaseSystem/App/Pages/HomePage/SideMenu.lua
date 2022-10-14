@@ -1,6 +1,5 @@
 local Roact = require(game:GetService('ReplicatedStorage').Packages.Roact)
 local Hooks = require(game:GetService('ReplicatedStorage').Packages.Hooks)
-local Rodux = require(game:GetService('ReplicatedStorage').Packages.Rodux)
 local RoactSpring = require(game:GetService('ReplicatedStorage').Packages.RoactSpring)
 local RoactRodux = require(game:GetService('ReplicatedStorage').Packages.RoactRodux)
 local e = Roact.createElement
@@ -39,7 +38,8 @@ end
 
 local ThemedButton = Hooks.new(Roact)(Button)
 
-local SideMenuComponent = function(_props)
+local SideMenuComponent = 
+	function(_props)
 		return e("Frame", {
 			AnchorPoint = Vector2.new(0.5, 0.5),
 			BackgroundColor3 = Color3.fromRGB(255, 255, 255),

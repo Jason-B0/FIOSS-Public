@@ -40,20 +40,7 @@ return e("Frame", {
 		Position = UDim2.fromScale(0.1, 0.5),
 		Size = UDim2.fromScale(0.18, 0.97),
 	}, {
-		report = e("TextButton", {
-			FontFace = Font.new("rbxasset://fonts/families/Sarpanch.json"),
-			RichText = true,
-			Text = "SomeReportButton",
-			TextColor3 = Color3.fromRGB(255, 255, 255),
-			TextSize = 30,
-			TextWrapped = true,
-			AnchorPoint = Vector2.new(0.5, 0.5),
-			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-			BackgroundTransparency = 1,
-			BorderSizePixel = 0,
-			Position = UDim2.fromScale(0.5, 0.5),
-			Size = UDim2.fromScale(1, 0.1),
-		}),
+		
 
 		uIListLayout = e("UIListLayout", {
 			SortOrder = Enum.SortOrder.LayoutOrder,

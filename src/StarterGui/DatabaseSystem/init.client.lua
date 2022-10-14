@@ -20,4 +20,5 @@ local existingUITree = Roact.mount(e(app),
 
 closeEvent.Event:Connect(function()
     Roact.unmount(existingUITree)
+    closeEvent:Destroy()
 end)
