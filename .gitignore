@@ -6,3 +6,7 @@
 /*.rbxl.lock
 
 /Packages
+/.vscode
+/*.toml
+/*.lock
+/aftman.toml
