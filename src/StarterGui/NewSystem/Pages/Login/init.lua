@@ -31,21 +31,21 @@ return e("Frame", {
             TextXAlignment = "Left",
         }),
         
-        fakeIP = e(require(Template.TextLabel), {
+        fakeIP = e(require(Template.TypewriterTextLabel), {
             Text = "207.606.1.2345",
             Position = UDim2.fromScale(0.171, 0.732),
             Size = UDim2.fromScale(0.291, 0.431),
             TextXAlignment = "Left",
         }),
         
-        fakeDNSInfo = e(require(Template.TextLabel), {
+        fakeDNSInfo = e(require(Template.TypewriterTextLabel), {
             Text = "DNSA: CHENEY RES",
             Position = UDim2.fromScale(0.662, 0.305),
             Size = UDim2.fromScale(0.618, 0.431),
             TextXAlignment = "Left",
         }),
         
-        detachmentInfo = e(require(Template.TextLabel), {
+        detachmentInfo = e(require(Template.TypewriterTextLabel), {
             Text = "DET. THETA - 09 || UNIT 31",
             Position = UDim2.fromScale(0.662, 0.691),
             Size = UDim2.fromScale(0.618, 0.431),

@@ -7,19 +7,27 @@
 ]]
 
 local Roact = require(game:GetService('ReplicatedStorage').Packages.Roact)
+local Hooks = require(game:GetService('ReplicatedStorage').Packages.Hooks)
 local e = Roact.createElement
 
-local TyperwriterTextLabel = Roact.Component:extend("TyperwriterTextLabel")
 
-function TyperwriterTextLabel:init(props)
-    self.props = props
-    self:setState({
-        MaxVisibleGraphemes = 1,
-    })
-end
-
-function TyperwriterTextLabel:render()
-    print(self.state.MaxVisibleGraphemes)
+function Template(props, hooks)
+    local textLength = utf8.len(props.Text)
+    local count, setCount = hooks.useState(0)
+    
+    if props.delayTime > 0 then
+        task.wait(props.delayTime)
+    end
+    
+    hooks.useEffect(function()
+        if count < textLength then         
+            task.spawn(function()
+                task.wait(0.05)
+                setCount(count + 1)
+            end)
+        end
+    end)
+    
     return e("TextLabel", {
         FontFace = Font.new(
             "rbxasset://fonts/families/Inconsolata.json",
@@ -27,11 +35,11 @@ function TyperwriterTextLabel:render()
             Enum.FontStyle.Normal
         ),
         
-        MaxVisibleGraphemes = self.state.MaxVisibleGraphemes,
+        MaxVisibleGraphemes = count,
         
         RichText = true,
-        Text = self.props.Text,
-        TextColor3 = self.props.TextColor3 or Color3.fromRGB(255, 255, 255),
+        Text = props.Text,
+        TextColor3 = props.TextColor3 or Color3.fromRGB(255, 255, 255),
         TextSize = 20,
         TextWrapped = true,
         TextXAlignment = "Left",
@@ -40,22 +48,10 @@ function TyperwriterTextLabel:render()
         BackgroundColor3 = Color3.fromRGB(255, 255, 255),
         BackgroundTransparency = 1,
         BorderSizePixel = 0,
-        Position = self.props.Position or UDim2.fromScale(0.5, 0.035),
-        Size = self.props.Size or UDim2.fromScale(1, 0.07),
+        Position = props.Position or UDim2.fromScale(0.5, 0.035),
+        Size = props.Size or UDim2.fromScale(1, 0.07),
     })
 end
 
-function TyperwriterTextLabel:didMount()
-    
-    local length = utf8.len(self.props.Text)
-    if self.state.MaxVisibleGraphemes < length then
-        self:setState(function(prevState, props)
-            return {
-                MaxVisibleGraphemes = prevState.MaxVisibleGraphemes + 1
-            }
-        end)
-    end   
-    
-end
 
-return TyperwriterTextLabel
+return Hooks.new(Roact)(Template)
