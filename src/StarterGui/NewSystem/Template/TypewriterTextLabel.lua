@@ -15,7 +15,7 @@ function Template(props, hooks)
     local textLength = utf8.len(props.Text)
     local count, setCount = hooks.useState(0)
     
-    if props.delayTime > 0 then
+    if props.delayTime ~= nil and props.delayTime > 0 then
         task.wait(props.delayTime)
     end
     

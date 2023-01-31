@@ -8,6 +8,7 @@
 ]]
 
 local Roact = require(game:GetService('ReplicatedStorage').Packages.Roact)
+local Hooks = require(game:GetService('ReplicatedStorage').Packages.Hooks)
 local e = Roact.createElement
 
 export type Props = {
@@ -16,18 +17,27 @@ export type Props = {
 
 local function updateSequence(abbreviation: string): string -- abbreviation should be two capital letters such as AB
     local firstSequence = math.random(001,999)
-    firstSequence = string.format("%02d", firstSequence)
+    firstSequence = string.format("%03d", firstSequence)
+    
+    if string.sub(firstSequence,1,1) == "0" then -- if the first digit is 0, replace it with a space
+        firstSequence = string.gsub(firstSequence, "0", " ",1)
+    end
+    
+    if string.sub(firstSequence,2,2) == "0" and string.sub(firstSequence,1,1) == " " then -- if the second digit is 0 and first digit is a space, replace it with a space
+        firstSequence = string.gsub(firstSequence, "0", " ",1)
+    end
     
     local secondSequence = math.random(1000,9999)
-    return abbreviation .. "\t" .. firstSequence .. ". " .. secondSequence
+    
+    return abbreviation .. "  " .. firstSequence .. ". " .. secondSequence
 end
 
-local SequentialText = Roact.Component:extend("SequentialText")
+local SequentialText = Roact.PureComponent:extend("SequentialText")
 
 function SequentialText:init(props: Props)
     self.props = props
     self.state = {
-        sequence = "AA\t123. 4567"
+        sequence = "AA  123. 4567"
     }
 end
 
@@ -55,11 +65,16 @@ function SequentialText:render()
 end
 
 function SequentialText:didMount()
-    local newSequence = updateSequence(self.props.abbreviation)
+    task.delay(math.random(0.1, 0.3), function()
+        while self.props.active do
+            task.wait(.5)
+            local newSequence = updateSequence(self.props.abbreviation)
+            self:setState({
+                sequence = newSequence
+            })
+        end
+    end)
     
-    self:setState({
-        sequence = newSequence
-    })
 end
 
 return SequentialText

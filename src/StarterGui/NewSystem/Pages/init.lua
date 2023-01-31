@@ -47,6 +47,7 @@ function Paiges:render()
             
             --// INSERT ALL PAGES BELOW
             loginPage = require(script.Login),
+            
             --// END INSERT ALL PAGES
         })
     })

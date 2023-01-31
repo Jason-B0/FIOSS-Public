@@ -51,7 +51,10 @@ return e("Frame", {
             Size = UDim2.fromScale(0.618, 0.431),
             TextXAlignment = "Left",
         }),
-         
-        
+    }),
+    
+    propsNumber = e(require(script.propsNumber), {
+        Position = UDim2.fromScale(0.0638, 0.466),
+        Size = UDim2.fromScale(0.101, 0.43),
     })
 })
