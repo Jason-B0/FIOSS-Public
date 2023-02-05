@@ -53,8 +53,13 @@ return e("Frame", {
         }),
     }),
     
-    propsNumber = e(require(script.propsNumber), {
+    propsNumber1 = e(require(script.propsNumber), {
         Position = UDim2.fromScale(0.0638, 0.466),
+        Size = UDim2.fromScale(0.101, 0.43),
+    }),
+    
+    propsNumber2 = e(require(script.propsNumber), {
+        Position = UDim2.fromScale(0.17, 0.466),
         Size = UDim2.fromScale(0.101, 0.43),
     })
 })
