@@ -5,7 +5,7 @@ local Assets = script.Parent.Parent.Parent.Assets
 
 local e = Roact.createElement
 
-return function ()
+return function()
 	return e(require(Template.RectangleFrame), {
 		Position = UDim2.fromScale(0.5, 0.4),
 		Size = UDim2.fromScale(0.274, 0.0985),

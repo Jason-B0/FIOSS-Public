@@ -4,9 +4,9 @@ local Assets = script.Parent.Assets
 
 local e = Roact.createElement
 
-local Paiges = Roact.Component:extend("Paiges")
+local Pages = Roact.Component:extend("Pages")
 
-function Paiges:render()
+function Pages:render()
    return e("Frame", {
         AnchorPoint = Vector2.new(0.5, 0.5),
         BackgroundColor3 = Color3.fromRGB(22, 27, 29),
@@ -53,4 +53,4 @@ function Paiges:render()
     })
 end
 
-return Paiges
+return Pages

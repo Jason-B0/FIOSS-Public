@@ -13,7 +13,7 @@ return e("Frame", {
 }, {
     
     -- INTERACTIVES
-    usernameTextbox = e(require(script.usernameTextbox)),
+    --usernameTextbox = e(require(script.usernameTextbox)),
     
     
     -- DUMMIES
