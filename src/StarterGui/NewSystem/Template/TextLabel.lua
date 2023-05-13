@@ -17,11 +17,16 @@ return function(props)
         Size = props.Size,
         Text = props.Text,
         TextColor3 = props.TextColor3 or Color3.fromRGB(255, 255, 255),
-        TextScaled = false,
+        TextScaled = true,
         TextSize = props.TextSize or 20,
         TextWrapped = true,
         TextXAlignment = props.TextXAlignment or Enum.TextXAlignment.Center,
         TextYAlignment = props.TextYAlignment or Enum.TextYAlignment.Center,
         ZIndex = 2,
+    }, {
+        uiTextConst = e("UITextSizeConstraint", {
+            MaxTextSize = 20,
+            MinTextSize = 10,
+        }),
     })
 end

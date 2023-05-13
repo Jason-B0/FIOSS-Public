@@ -19,11 +19,34 @@ return function(props)
 		PlaceholderText = props.PlaceholderText or "",
 		PlaceholderColor3 = props.PlaceholderColor3 or Color3.fromRGB(255, 255, 255),
         TextColor3 = props.TextColor3 or Color3.fromRGB(255, 255, 255),
-        TextScaled = false,
+        TextScaled = true,
         TextSize = props.TextSize or 20,
         TextWrapped = true,
         TextXAlignment = props.TextXAlignment or Enum.TextXAlignment.Center,
         TextYAlignment = props.TextYAlignment or Enum.TextYAlignment.Center,
         ZIndex = 2,
+        ClearTextOnFocus = false,
+        
+        [Roact.Ref] = props.Ref or nil,
+        [Roact.Event.ReturnPressedFromOnScreenKeyboard] = 
+            props.InputFinished or 
+            function()
+                print("InputFinished")
+            end,
+        [Roact.Event.Focused] = 
+            props.Focused or 
+            function()
+                print("Focused")
+            end,
+        [Roact.Event.FocusLost] = 
+            props.InputFinished or 
+            function()
+                print("InputFinished")
+            end,
+    }, {
+        uiTextConst = e("UITextSizeConstraint", {
+            MaxTextSize = 20,
+            MinTextSize = 10,
+        }),
     })
 end

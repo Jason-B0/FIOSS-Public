@@ -46,7 +46,7 @@ function Pages:render()
             }),
             
             --// INSERT ALL PAGES BELOW
-            loginPage = require(script.Login),
+            loginPage = e(require(script.Login)),
             
             --// END INSERT ALL PAGES
         })

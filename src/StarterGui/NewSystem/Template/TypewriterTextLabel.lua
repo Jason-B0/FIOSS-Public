@@ -41,7 +41,7 @@ function Template(props, hooks)
         Text = props.Text,
         TextColor3 = props.TextColor3 or Color3.fromRGB(255, 255, 255),
         TextSize = 20,
-        TextWrapped = true,
+        TextScaled = true,
         TextXAlignment = "Left",
         TextYAlignment = "Top",
         AnchorPoint = Vector2.new(0.5, 0.5),
@@ -50,6 +50,11 @@ function Template(props, hooks)
         BorderSizePixel = 0,
         Position = props.Position or UDim2.fromScale(0.5, 0.035),
         Size = props.Size or UDim2.fromScale(1, 0.07),
+    }, {
+        uiTextConst = e("UITextSizeConstraint", {
+            MaxTextSize = 20,
+            MinTextSize = 10,
+        }),
     })
 end
 

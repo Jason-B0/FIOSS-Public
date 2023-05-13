@@ -1,4 +1,5 @@
 local Roact = require(game:GetService('ReplicatedStorage').Packages.Roact)
+
 local Template = script.Parent.Parent.Parent.Template
 local Assets = script.Parent.Parent.Parent.Assets
 
@@ -6,13 +7,13 @@ local e = Roact.createElement
 
 return function(props)
 	return e(require(Template.RectangleFrame), {
-		Position = UDim2.fromScale(0.5, 0.4),
+		Position = UDim2.fromScale(0.5, 0.55),
 		Size = UDim2.fromScale(0.274, 0.0985),
 	}, {
 		outline = require(Assets.RectangleOutline),
 		
 		textLabel = e(require(Template.TextLabel), {
-			Text = "USERNAME:",
+			Text = "PASSWORD:",
 			TextColor3 = Color3.fromRGB(255, 150, 4),
 			TextSize = 20,
 			TextXAlignment = "Left",
@@ -31,7 +32,6 @@ return function(props)
 			Position = UDim2.fromScale(0.612, 0.498),
 			Size = UDim2.fromScale(0.584, 0.431),
 		})
-		
 		
 	})
 end

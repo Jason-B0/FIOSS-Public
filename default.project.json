@@ -17,11 +17,35 @@
       "$ignoreUnknownInstances": true,
       "$path": "src/ServerScriptService" 
     },
+    
+    "ServerStorage": {
+      "$ignoreUnknownInstances": true,
+      "$path": "src/ServerStorage"
+    },
 
     "StarterGui": {
       "$ignoreUnknownInstances": true,
       "$path": "src/StarterGui" 
     },
+    
+    "StarterPlayer": {
+      "$ignoreUnknownInstances": true,
+      "$path": "src/StarterPlayer",
+      
+      "StarterPlayerScripts": {
+        "$ignoreUnknownInstances": true,
+        "$className": "StarterPlayerScripts",
+        "$path": "src/StarterPlayer/StarterPlayerScripts"
+      },
+      
+      "StarterCharacterScripts": {
+        "$ignoreUnknownInstances": true,
+        "$className": "StarterCharacterScripts",
+        "$path": "src/StarterPlayer/StarterCharacterScripts"
+      }
+    },
+    
+    
 
     "Workspace": {
       "$ignoreUnknownInstances": true,

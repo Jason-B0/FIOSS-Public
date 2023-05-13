@@ -52,7 +52,7 @@ function SequentialText:render()
         Text = self.state.sequence,
         TextColor3 = Color3.fromRGB(255, 255, 255),
         TextSize = 20,
-        TextWrapped = true,
+        TextScaled = true,
         TextXAlignment = "Left",
         TextYAlignment = "Top",
         AnchorPoint = Vector2.new(0.5, 0.5),
@@ -61,6 +61,11 @@ function SequentialText:render()
         BorderSizePixel = 0,
         Position = UDim2.fromScale(0.5, 0.035),
         Size = UDim2.fromScale(1, 0.07),
+    }, {
+        uiTextConst = e("UITextSizeConstraint", {
+            MaxTextSize = 20,
+            MinTextSize = 10,
+        }),
     })
 end
 
