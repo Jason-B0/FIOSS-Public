@@ -8,3 +8,6 @@
 sourcemap.json
 
 /Packages
+/*.toml
+/*.lock
+/aftman.toml
