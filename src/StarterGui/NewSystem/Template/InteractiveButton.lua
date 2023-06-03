@@ -13,6 +13,7 @@ local function Template(props, hooks)
         BorderSizePixel = 0,
         Position = props.Position or UDim2.fromScale(0.5, 0.5),
         Size = props.Size or UDim2.fromScale(0.5, 0.5),
+        ZIndex = 3,
     }, {
         button = e("ImageButton", {
             Image = "rbxassetid://12241605246",
@@ -26,20 +27,19 @@ local function Template(props, hooks)
             Position = UDim2.fromScale(0.515, 0.455),
             Size = UDim2.fromScale(1.03, 1.09),
             ZIndex = 5,
-            [Roact.Event.Activated] = props.onClick or function()
+            [Roact.Event.Activated] = if props.onClick ~= nil then props.onClick else function()
                 print("Clicked")
             end,
             
         }),
         
-        textButton = e("TextButton", {
+        textLabel = e("TextLabel", {
             FontFace = Font.new("rbxasset://fonts/families/Inconsolata.json"),
             Text = props.Text or "Action",
             TextColor3 = Color3.fromRGB(255, 255, 255),
             TextSize = 20,
             TextScaled = true,
             TextWrapped = true,
-            AutoButtonColor = false,
             Active = true,
             AnchorPoint = Vector2.new(0.5, 0.5),
             BackgroundColor3 = Color3.fromRGB(255, 255, 255),
@@ -48,9 +48,6 @@ local function Template(props, hooks)
             Position = UDim2.fromScale(0.5, 0.5),
             Size = UDim2.fromScale(0.8, 0.8),
             ZIndex = 5,
-            [Roact.Event.Activated] = props.onClick or function()
-                print("Clicked")
-            end,
             
         }, {
             uiTextConst = e("UITextSizeConstraint", {

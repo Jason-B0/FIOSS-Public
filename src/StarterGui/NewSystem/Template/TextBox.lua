@@ -43,6 +43,12 @@ return function(props)
             function()
                 print("InputFinished")
             end,
+        
+        [Roact.Change.Text] = 
+            if props.isSecretInput then 
+            function()
+                
+            end else nil,
     }, {
         uiTextConst = e("UITextSizeConstraint", {
             MaxTextSize = 20,

@@ -61,6 +61,7 @@ function SequentialText:render()
         BorderSizePixel = 0,
         Position = UDim2.fromScale(0.5, 0.035),
         Size = UDim2.fromScale(1, 0.07),
+        ZIndex = 3,
     }, {
         uiTextConst = e("UITextSizeConstraint", {
             MaxTextSize = 20,

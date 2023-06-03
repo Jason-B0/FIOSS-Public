@@ -1,6 +1,7 @@
 local Roact = require(game:GetService("ReplicatedStorage").Packages.Roact)
 local Knit = require(game:GetService('ReplicatedStorage').Packages.Knit)
 local FIOSS_Service	= Knit.GetService("FIOSS_Service")
+local UIController = Knit.GetController("UIController")
 local Template = script.Parent.Parent.Parent.Template
 
 local e = Roact.createElement
@@ -12,9 +13,10 @@ return function(props)
 		Text = "LOGIN",
 		
 		onClick = function()
-			print("Clicked")
 			FIOSS_Service:RequestLogin(props.Username, props.Password):andThen(function(response)
-				print(response)
+				if response == true then
+					UIController:SwitchToPage("home")
+				end
 			end)
 		end,
 		

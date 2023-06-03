@@ -31,6 +31,8 @@ return function(props)
 			TextXAlignment = "Left",
 			Position = UDim2.fromScale(0.612, 0.498),
 			Size = UDim2.fromScale(0.584, 0.431),
+			
+			
 		})
 		
 	})

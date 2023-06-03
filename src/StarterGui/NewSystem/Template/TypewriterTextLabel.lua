@@ -50,6 +50,7 @@ function Template(props, hooks)
         BorderSizePixel = 0,
         Position = props.Position or UDim2.fromScale(0.5, 0.035),
         Size = props.Size or UDim2.fromScale(1, 0.07),
+        ZIndex = 3,
     }, {
         uiTextConst = e("UITextSizeConstraint", {
             MaxTextSize = 20,

@@ -37,11 +37,12 @@ return function(props)
 			BorderSizePixel = 0,
 			Position = UDim2.fromScale(0.5, 0.5),
 			Size = UDim2.fromScale(0.8, 0.8),
+			ZIndex = 3,
 		}),
 		
 		uiTextConst = e("UITextSizeConstraint", {
 			MaxTextSize = 40,
-			MinTextSize = 10,
+			MinTextSize = 20,
 		}),
 	})
 end

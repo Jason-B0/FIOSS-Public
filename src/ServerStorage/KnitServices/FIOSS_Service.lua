@@ -1,5 +1,6 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
 local Knit = require(ReplicatedStorage.Packages.Knit)
 local Promise = require(ReplicatedStorage.Packages.Promise)
 
@@ -11,6 +12,7 @@ local PlayerProfileService
 --=================================
 local function registerNewFIOSS(player:Player, username: string, password: string)
 	local defaultData = PlayerProfileService:GetDefaultTemplate()
+	defaultData.userId = player.UserId
 	defaultData.username = username
 	defaultData.password = password
 	defaultData.firstTimeUser = false
@@ -26,10 +28,24 @@ function FIOSS_Service.Client:RequestLogin(player:Player, username: string, pass
 	end
 end
 
+function FIOSS_Service.Client:RequestData(player: Player)
+	return self.Server:RequestData(player)
+end
+
+function FIOSS_Service.Client:UpdateData(player: Player, newData: {})
+	return self.Server:UpdateData(player, newData)
+end
 --=================================
 function FIOSS_Service:RequestLogin(player:Player, username: string, password: string)
 	local data = PlayerProfileService:GetPlayerData(player, "fiossData")
-
+	-- studio bypass
+	if RunService:IsStudio() then
+		if data.firstTimeUser == true then
+			registerNewFIOSS(player, tostring(player.UserId), player.Name)
+		end
+		return true
+	end
+	
 	-- if client is a new user
 	if data.firstTimeUser == true then
 		if player.UserId == tonumber(username) and player.Name == password then
@@ -46,6 +62,23 @@ function FIOSS_Service:RequestLogin(player:Player, username: string, password: s
 	end
 end
 
+function FIOSS_Service:RequestData(player: Player)
+	local data = PlayerProfileService:GetPlayerData(player, "fiossData")
+	return data
+end
+
+function FIOSS_Service:UpdateData(player: Player, newData: {})
+	local data = PlayerProfileService:GetPlayerData(player, "fiossData")
+	if player.UserId == data.userId then
+		for key, value in pairs(newData) do
+			newData[key] = value
+		end
+		PlayerProfileService:SetPlayerData(player, "fiossData", data)
+		return true
+	else
+		return false
+	end
+end
 --=================================
 function FIOSS_Service:KnitStart()
 	PlayerProfileService = Knit.GetService("PlayerProfileService")

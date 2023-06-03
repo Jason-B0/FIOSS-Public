@@ -15,7 +15,7 @@ local function validateInput(inputString: string): boolean
     return true
 end
 
-local function Main(_, hooks)
+local function Main(props, hooks)
     local currentUsernameInput, setUsernameInput = hooks.useState("")
     local currentPasswordInput, setPasswordInput = hooks.useState("")
     local usernameTextboxRef = Roact.createRef()
@@ -40,6 +40,8 @@ local function Main(_, hooks)
     end
     
 	return e("Frame", {
+        Active = props.active,
+        Visible = props.active,
 		AnchorPoint = Vector2.new(0.5, 0.5),
 		BackgroundColor3 = Color3.fromRGB(50, 50, 50),
 		BackgroundTransparency = 0.8,

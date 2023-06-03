@@ -51,29 +51,20 @@ end
 function PlayerProfileService:GetPlayerData(player: Player, dataIndex: string?)
 	assert(typeof(dataIndex) == "string" or dataIndex == nil, "dataIndex must be a string or nil!")
 
-	local _, Data = Promise.new(function(resolve)
-		while not self.PlayerProfiles[player] do
-			task.wait()
-		end
+	local plrData = self.PlayerProfiles[player].Data
 
-		local plrData = self.PlayerProfiles[player].Data
-
-		if dataIndex ~= nil and plrData[dataIndex] then
-			resolve(plrData[dataIndex])
-		else
-			resolve(plrData)
-		end
-	end)
-		:timeout(60)
-		:await()
-
-	return Data
+	if dataIndex ~= nil and plrData[dataIndex] then
+		return plrData[dataIndex]
+	else
+		return plrData
+	end
 end
 
 function PlayerProfileService:SetPlayerData(player: Player, dataIndex: string, value)
 	assert(typeof(dataIndex) == "string" or typeof(dataIndex) == nil, "dataIndex must be a string or nil!")
 	assert(typeof(value) ~= nil, "Attempting to write a nil value into player profile.")
 	if self.PlayerProfiles[player] then
+		print(self.PlayerProfiles[player].Data[dataIndex])
 		self.PlayerProfiles[player].Data[dataIndex] = value
 	end
 end
@@ -82,7 +73,7 @@ function PlayerProfileService:KnitStart() end
 
 function PlayerProfileService:KnitInit()
 	for _, player in pairs(Players:GetPlayers()) do
-		if player:IsA(player) then
+		if player:IsA("Player") then
 			task.spawn(PlayerAdded(player))
 		end
 	end
