@@ -55,7 +55,15 @@ function FIOSS_Service:RequestLogin(player:Player, username: string, password: s
 		end
 	end
 	
-	if data.username == username and data.password == password then
+	-- match pattern
+	local pattern = "^.+@theta09%.sac%.com$"
+	if not string.match(username, pattern) then
+		return false
+	end
+	
+	-- match first part of username before the @ sign
+	local usernamePrefix = string.match(username, "^(.-)@")
+	if (not usernamePrefix or usernamePrefix ~= data.username) and data.password == password then
 		return true
 	else
 		return false
