@@ -1,5 +1,5 @@
-local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
+local RunService = game:GetService('RunService');
+local Players = game:GetService('Players');
 local LocalPlayer = Players.LocalPlayer
 local Knit = require(game:GetService('ReplicatedStorage').Packages.Knit)
 local Signal = require(game:GetService('ReplicatedStorage').Packages.Signal)
@@ -24,7 +24,7 @@ function UIController:SwitchToPage(newPage)
 end
 
 function UIController:MountUI()
-	local app = require(LocalPlayer.PlayerGui:WaitForChild("NewSystem").App)
+	local app = require(LocalPlayer.PlayerGui:WaitForChild("FIOSS-Client").App)
 	self:UnmountUI()
 	self.existingUITree = Roact.mount(app, LocalPlayer.PlayerGui, "DatabaseSystemUI")
 end

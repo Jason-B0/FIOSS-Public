@@ -3,7 +3,8 @@
         "trailing-space",
         1001,
         1011,
-    ]
+    ],
+    "stylua.targetReleaseVersion": "latest"
 }
 
 /// this also is a thing to make sure
